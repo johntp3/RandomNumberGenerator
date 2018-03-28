@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Random Number Generator</string>
+    <string name="action_settings">Settings</string>
+    <string name="number">0</string>
+    <string name="low">low</string>
+    <string name="high">high</string>
+</resources>
