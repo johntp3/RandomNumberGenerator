@@ -1,6 +1,7 @@
 package com.example.john.randomnumbergenerator;
 
 import android.os.Bundle;
+import android.renderscript.Int3;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void randomButton(View view) {
-        
+        int lowNum = Integer.parseInt(getText.toString());
+        int highNum = Integer.parseInt(getText(high).toString());
     }
 
 }
