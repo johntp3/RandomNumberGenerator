@@ -8,8 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView bigNumber;
+    private EditText low;
+    private EditText high;
+    private Button randomButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        bigNumber = findViewById(R.id.number);
+        low = findViewById(R.id.low);
+        high = findViewById(R.id.high);
+        randomButton = findViewById(R.id.button);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,4 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void randomButton(View view) {
+        
+    }
+
 }
