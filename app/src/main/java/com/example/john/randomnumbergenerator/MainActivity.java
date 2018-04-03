@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,9 +68,44 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public boolean validNum() {
+        try {
+            Integer.parseInt(low.getText().toString());
+            Integer.parseInt(high.getText().toString());
+            return true;
+        }
+        catch(NumberFormatException e) {
+            Toast.makeText(getApplicationContext(), "You need to type in a number between -2^31 and 2^31", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
     public void randomButton(View view) {
-        int lowNum = Integer.parseInt(getText.toString());
-        int highNum = Integer.parseInt(getText(high).toString());
+
+
+
+        Random rand = new Random();
+        if(validNum()) {
+            int lowNum = Integer.parseInt(low.getText().toString());
+            int highNum = Integer.parseInt(high.getText().toString());
+            int temp;
+
+            if(highNum < lowNum) {
+                temp = lowNum;
+                lowNum = highNum;
+                highNum = temp;
+            }
+
+            int num = rand.nextInt(highNum - lowNum + 1) + lowNum;
+            bigNumber.setText(Integer.toString(num));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            num = rand.nextInt(highNum - lowNum + 1) + lowNum;
+            bigNumber.setText(Integer.toString(num));
+        }
     }
 
 }

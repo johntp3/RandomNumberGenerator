@@ -27,17 +27,19 @@
 
         <EditText
             android:id="@+id/low"
-            android:text="@string/low"
+            android:hint="@string/low"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textAlignment="center"/>
         <EditText
             android:id="@+id/high"
             android:layout_toEndOf="@id/low"
-            android:text="@string/high"
+            android:hint="@string/high"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textAlignment="center"/>
 
 
     </RelativeLayout>
