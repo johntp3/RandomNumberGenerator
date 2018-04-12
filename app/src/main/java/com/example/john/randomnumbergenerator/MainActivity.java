@@ -1,5 +1,7 @@
 package com.example.john.randomnumbergenerator;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.renderscript.Int3;
 import android.support.design.widget.FloatingActionButton;
@@ -83,28 +85,52 @@ public class MainActivity extends AppCompatActivity {
     public void randomButton(View view) {
 
 
-
         Random rand = new Random();
-        if(validNum()) {
+        if (validNum()) {
             int lowNum = Integer.parseInt(low.getText().toString());
             int highNum = Integer.parseInt(high.getText().toString());
             int temp;
 
-            if(highNum < lowNum) {
+            if (highNum < lowNum) {
                 temp = lowNum;
                 lowNum = highNum;
                 highNum = temp;
             }
+            Multithreaded m = new Multithreaded();
+            m.execute(lowNum, highNum);
+        }
+    }
+    @SuppressLint("StaticFieldLeak")
+    private class Multithreaded extends AsyncTask<Integer, Integer, Integer> {
+        @Override
+        protected void onPreExecute() {
+            randomButton.setEnabled(false);
+        }
 
-            int num = rand.nextInt(highNum - lowNum + 1) + lowNum;
-            bigNumber.setText(Integer.toString(num));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            Integer randnum = 0;
+            for (int i = 0; i < 50; i++) {
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Random r = new Random();
+                randnum = r.nextInt(integers[1] - integers[0] + 1) + integers[0];
+                publishProgress(randnum);
             }
-            num = rand.nextInt(highNum - lowNum + 1) + lowNum;
-            bigNumber.setText(Integer.toString(num));
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            bigNumber.setText(progress[0].toString());
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            randomButton.setEnabled(true);
         }
     }
 
